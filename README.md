@@ -24,6 +24,7 @@ Open the Huawei Health app and open the exercise that you want to convert to vie
 
 ## How to use the Huawei GPX Converter:
 Download the script and save it as a Python script in the same folder as your `HiTrack` file.
+To be sure to have all necessary packages, do a `pip3 install -r requirements.txt`
 
 The tool is run on the command line. Without arguments, every `HiTrack` files present in the same fold than the scrip will be processed and transformed in a `GPX` file renamed with this rule :
 > ddmmyyyy_hhmmss_hhmmss.gpx 
