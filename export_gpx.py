@@ -143,7 +143,7 @@ def get_datas(file_in):
                     dic['m'] = int(k) // 10000  # Nb meters since start
                     dic['s'] = value  # NB secondes to do 1000 meters
                     dic['pace'] = str(int(value) // 60) + "'"\
-                    + str(int(value) % 60) + '"'
+                        + str(int(value) % 60) + '"'
                     pace_minute.append(dic)
                 elif type_data == 'b-p-m':
                     # Beat per minutes ?
@@ -175,12 +175,16 @@ def get_datas(file_in):
                     debug('Data type unknown: ' + type_data)
 
         dataframe = pd.DataFrame(lbs).sort_values(by=['t'], ascending=True)
-        dataframe = pd.merge(dataframe, pd.DataFrame(heart_rate), on='t', how='outer')
-        dataframe = pd.merge(dataframe, pd.DataFrame(alt), on='t', how='outer')
+        dataframe = pd.merge(dataframe, pd.DataFrame(heart_rate),
+                             on='t', how='outer')
+        dataframe = pd.merge(dataframe, pd.DataFrame(alt), on='t',
+                             how='outer')
         dataframe['s'] = dataframe.index
-        dataframe = dataframe[dataframe['lat'].notnull()].sort_values(by=['t'], ascending=True)
+        dataframe = dataframe[dataframe['lat'].notnull()]\
+            .sort_values(by=['t'], ascending=True)
         dataframe = dataframe[dataframe['lat'] != 90.0]
-        dataframe = pd.merge(dataframe, pd.DataFrame(speed_per_seconde), on='s', how='outer')
+        dataframe = pd.merge(dataframe, pd.DataFrame(speed_per_seconde),
+                             on='s', how='outer')
         dataframe = dataframe.fillna(method='ffill')
         dataframe = dataframe.fillna(method='bfill')
     return dataframe
