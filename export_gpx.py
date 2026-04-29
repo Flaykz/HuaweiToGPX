@@ -185,8 +185,8 @@ def get_datas(file_in):
         dataframe = dataframe[dataframe['lat'] != 90.0]
         dataframe = pd.merge(dataframe, pd.DataFrame(speed_per_seconde),
                              on='s', how='outer')
-        dataframe = dataframe.fillna(method='ffill')
-        dataframe = dataframe.fillna(method='bfill')
+        dataframe = dataframe.ffill()
+        dataframe = dataframe.bfill()
     return dataframe
 
 
